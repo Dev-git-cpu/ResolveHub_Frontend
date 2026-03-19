@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
 const Dashboard = () => {
 
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ const Dashboard = () => {
 
     try {
       const res = await axios.get(
-        `http://localhost:8080/complaints/user/${userId}`
+        `$${API_URL}/complaints/user/${userId}`
       );
       setComplaints(res.data);
     } catch (error) {
@@ -55,7 +57,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/complaints/${userId}`,
+        `${API_URL}/complaints/${userId}`,
         { title, category, description }
       );
 

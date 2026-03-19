@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const Login = () => {
 
   const [email,setEmail] = useState('')
@@ -25,7 +26,7 @@ const Login = () => {
     try {
 
       const response = await axios.post(
-        "http://localhost:8080/auth/login",
+        `${API_URL}/auth/login`,
         {
           email,
           password

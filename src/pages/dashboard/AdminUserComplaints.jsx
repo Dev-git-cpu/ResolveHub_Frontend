@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminUserComplaints = () => {
 
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const AdminUserComplaints = () => {
   // Fetch users from backend
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/admin/users"); 
+      const response = await axios.get(`${API_URL}/admin/users`); 
       setUsers(response.data || []); 
     } catch (error) {
       console.error(error);
