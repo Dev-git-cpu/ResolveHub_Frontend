@@ -36,6 +36,8 @@ const Login = () => {
       const data = response.data;
 
       console.log("Response:", data);
+      console.log("Url: ",API_URL);
+      
 
       // ⭐ Correct storage
       localStorage.setItem("token", data.token);
