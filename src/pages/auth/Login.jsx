@@ -32,7 +32,8 @@ const Login = () => {
           password
         }
       );
-
+    console.log("Url: ",API_URL);
+     
       const data = response.data;
 
       console.log("Response:", data);
