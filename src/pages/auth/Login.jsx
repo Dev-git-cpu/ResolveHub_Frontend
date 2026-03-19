@@ -65,8 +65,7 @@ if (data.role === "ADMIN") {
       console.log(error);
 
     }
-console.log("Response:", data);
-      console.log("Url: ",API_URL);
+
     setLoader(false)
   };
 
