@@ -22,7 +22,7 @@ const Login = () => {
     }
 
     setLoader(true)
-
+console.log("Url: ",API_URL);
     try {
 
       const response = await axios.post(
