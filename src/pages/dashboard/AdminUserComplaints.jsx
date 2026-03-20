@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
-
-    const API_URL = import.meta.env.VITE_API_URL;
 
 const AdminUserComplaints = () => {
 
@@ -13,7 +11,7 @@ const AdminUserComplaints = () => {
   // Fetch users from backend
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`${API_URL}/admin/users`); 
+      const response = await axiosInstance.get("/admin/users", { withCredentials: true }); 
       setUsers(response.data || []); 
     } catch (error) {
       console.error(error);

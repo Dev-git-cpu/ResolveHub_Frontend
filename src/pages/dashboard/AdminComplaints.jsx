@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
-
-    const API_URL = import.meta.env.VITE_API_URL;
 
 const AdminComplaints = () => {
 
@@ -14,7 +12,7 @@ const AdminComplaints = () => {
 
   const fetchComplaints = async () => {
     try {
-      const response = await axios.get(`${API_URL}/admin/complaints`);
+      const response = await axiosInstance.get("/admin/complaints", { withCredentials: true });
       const complaintsList = response.data.content || [];
       complaintsList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setComplaints(complaintsList);
@@ -32,13 +30,14 @@ const AdminComplaints = () => {
   const updateStatus = async (complaintId, newStatus) => {
     try {
       const complaint = complaints.find(c => c.id === complaintId);
-      await axios.put(
-        `http://localhost:8080/admin/complaints/${complaintId}`,
+      await axiosInstance.put(
+        `/admin/complaints/${complaintId}`,
         {
           status: newStatus,
           title: complaint.title,
           description: complaint.description
-        }
+        },
+        { withCredentials: true }
       );
       toast.success("Complaint Updated");
 
