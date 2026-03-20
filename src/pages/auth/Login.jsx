@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 
-const API_URL = import.meta.env.VITE_API_URL;
 const Login = () => {
 
   const [email,setEmail] = useState('')
@@ -22,22 +21,18 @@ const Login = () => {
     }
 
     setLoader(true)
-console.log("Url: ",API_URL);
+
     try {
 
-      const response = await axios.post(
-        `${API_URL}/auth/login`,
-        {
-          email,
-          password
-        }
+      const response = await axiosInstance.post(
+        "/auth/login",
+        { email, password },
+        { withCredentials: true }
       );
-    console.log("Url: ",API_URL);
-     
+
       const data = response.data;
 
       console.log("Response:", data);
-      console.log("Url: ",API_URL);
       
 
       // ⭐ Correct storage

@@ -1,9 +1,7 @@
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-    const API_URL = import.meta.env.VITE_API_URL;
 
 const Dashboard = () => {
 
@@ -34,8 +32,9 @@ const Dashboard = () => {
     }
 
     try {
-      const res = await axios.get(
-        `$${API_URL}/complaints/user/${userId}`
+      const res = await axiosInstance.get(
+        `/complaints/user/${userId}`,
+        { withCredentials: true }
       );
       setComplaints(res.data);
     } catch (error) {
@@ -56,9 +55,10 @@ const Dashboard = () => {
     }
 
     try {
-      const response = await axios.post(
-        `${API_URL}/complaints/${userId}`,
-        { title, category, description }
+      const response = await axiosInstance.post(
+        `/complaints/${userId}`,
+        { title, category, description },
+        { withCredentials: true }
       );
 
       console.log(response.data);
