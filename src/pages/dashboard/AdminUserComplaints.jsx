@@ -103,7 +103,7 @@ const AdminUserComplaints = () => {
                       {user.role}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-gray-300">{user.createdAt}</td>
+                  <td className="px-6 py-4 text-gray-300">{new Date(user.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>
