@@ -199,9 +199,9 @@ const AdminComplaints = () => {
                       className="border border-emerald-600 bg-gray-800 rounded-lg px-3 py-1 text-sm text-white focus:outline-none"
                     >
                       <option value="SUBMITTED">SUBMITTED</option>
+                       <option value="IN_PROGRESS">IN_PROGRESS</option>
+                        <option value="RESOLVED">RESOLVED</option>
                       <option value="PENDING">PENDING</option>
-                      <option value="IN_PROGRESS">IN_PROGRESS</option>
-                      <option value="RESOLVED">RESOLVED</option>
                     </select>
                   </td>
 
