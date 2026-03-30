@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
 import axiosInstance from "../../api/axiosInstance";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Login = () => {
 
   const [email,setEmail] = useState('')
@@ -25,7 +27,7 @@ const Login = () => {
     try {
 
       const response = await axiosInstance.post(
-        "/auth/login",
+      `${API_URL}/auth/login`,
         { email, password },
         { withCredentials: true }
       );
@@ -35,7 +37,6 @@ const Login = () => {
       console.log("Response:", data);
       
 
-      // ⭐ Correct storage
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.id);
       localStorage.setItem("email", data.email);
@@ -48,7 +49,6 @@ if (data.role === "ADMIN") {
       navigate("/dashboard", { replace: true });
     }
     toast.success("Login Successful")
-      // navigate("/dashboard",{replace:true});
       console.log("Backend Role: ", data.role);
       
 

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminComplaints = () => {
 
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const AdminComplaints = () => {
     try {
       const complaint = complaints.find(c => c.id === complaintId);
       await axiosInstance.put(
-        `/admin/complaints/${complaintId}`,
+        `${API_URL}/admin/complaints/${complaintId}`,
         {
           status: newStatus,
           title: complaint.title,

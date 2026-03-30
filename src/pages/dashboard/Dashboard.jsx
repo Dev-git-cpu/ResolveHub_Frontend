@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Dashboard = () => {
 
   const navigate = useNavigate();
@@ -23,7 +25,6 @@ const Dashboard = () => {
 
   const userId = localStorage.getItem("userId");
 
-  // FETCH COMPLAINTS
   const fetchComplaints = async () => {
     if (!userId) {
       toast.error("User not logged in");
@@ -33,7 +34,7 @@ const Dashboard = () => {
 
     try {
       const res = await axiosInstance.get(
-        `/complaints/user/${userId}`,
+        `${API_URL}/complaints/user/${userId}`,
         { withCredentials: true }
       );
       setComplaints(res.data);
@@ -56,7 +57,7 @@ const Dashboard = () => {
 
     try {
       const response = await axiosInstance.post(
-        `/complaints/${userId}`,
+        `${API_URL}/complaints/${userId}`,
         { title, category, description },
         { withCredentials: true }
       );

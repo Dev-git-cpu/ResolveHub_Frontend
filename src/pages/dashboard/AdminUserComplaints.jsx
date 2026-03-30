@@ -3,15 +3,16 @@ import { useState, useEffect } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminUserComplaints = () => {
 
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
-  // Fetch users from backend
   const fetchUsers = async () => {
     try {
-      const response = await axiosInstance.get("/admin/users", { withCredentials: true }); 
+      const response = await axiosInstance.get(`${API_URL}/admin/users`, { withCredentials: true }); 
       setUsers(response.data || []); 
     } catch (error) {
       console.error(error);

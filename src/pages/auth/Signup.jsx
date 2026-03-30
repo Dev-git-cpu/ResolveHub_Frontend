@@ -3,6 +3,8 @@ import { useState } from "react";
 import {  useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
+const API_URL = import.meta.env.VITE_API_URL;
+
  const Signup = () => {
 
   const [name, setName] = useState("")
@@ -24,7 +26,7 @@ return;
 
     try {
       await axiosInstance.post(
-        "/auth/register",
+        `  ${API_URL}/auth/register`,
         { name, email, password },
         { withCredentials: true }
       );
