@@ -26,7 +26,7 @@ return;
 
     try {
       await axiosInstance.post(
-        `  ${API_URL}/auth/register`,
+        `${API_URL}/auth/register`,
         { name, email, password },
         { withCredentials: true }
       );
